@@ -19,7 +19,7 @@ from tensorboardX import SummaryWriter
 from sklearn.metrics import confusion_matrix
 from utils import *
 from imbalance_cifar import IMBALANCECIFAR10, IMBALANCECIFAR100
-from losses import LDAMLoss, FocalLoss
+from losses import LDAMLoss, FocalLoss, VSLoss
 import wandb
 from sam import SAM
 import matplotlib.pyplot as plt
@@ -70,6 +70,8 @@ parser.add_argument('--pretrained', dest='pretrained', action='store_true',
                     help='use pre-trained model')
 parser.add_argument('--seed', default=None, type=int,
                     help='seed for initializing training. ')
+parser.add_argument('--gamma', default=0.3, type=float, help='VS hyperparameter')
+parser.add_argument('--tau', default=1.0, type=float, help='VS hyperparameter')
 parser.add_argument('--gpu', default=None, type=int,
                     help='GPU id to use.')
 parser.add_argument('--root_log',type=str, default='log')
@@ -240,6 +242,9 @@ def main_worker(gpu, ngpus_per_node, args):
             criterion = LDAMLoss(cls_num_list=cls_num_list, max_m=0.5, s=30, weight=per_cls_weights).cuda(args.gpu)
         elif args.loss_type == 'Focal':
             criterion = FocalLoss(weight=per_cls_weights, gamma=1).cuda(args.gpu)
+        elif args.loss_type == 'VS':
+            criterion = VSLoss(cls_num_list=args.cls_num_list, tau=args.tau, gamma=args.gamma,
+                               weight=per_cls_weights).cuda(args.gpu)
         else:
             warnings.warn('Loss type is not listed')
             return
