@@ -6,6 +6,7 @@
 
 This is the official PyTorch implementation for our NeurIPS'22 paper: **Escaping Saddle Points for Effective Generalization on Class-Imbalanced Data** [[`OpenReview`](https://openreview.net/pdf?id=9DYKrsFSU2)]  [[`arXiv`](http://arxiv.org/abs/2212.13827)] 
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/escaping-saddle-points-for-effective/long-tail-learning-on-cifar-100-lt-r-200)](https://paperswithcode.com/sota/long-tail-learning-on-cifar-100-lt-r-200?p=escaping-saddle-points-for-effective) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/escaping-saddle-points-for-effective/long-tail-learning-on-cifar-10-lt-r-200)](https://paperswithcode.com/sota/long-tail-learning-on-cifar-10-lt-r-200?p=escaping-saddle-points-for-effective) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/escaping-saddle-points-for-effective/long-tail-learning-on-cifar-10-lt-r-100)](https://paperswithcode.com/sota/long-tail-learning-on-cifar-10-lt-r-100?p=escaping-saddle-points-for-effective) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/escaping-saddle-points-for-effective/long-tail-learning-on-cifar-100-lt-r-100)](https://paperswithcode.com/sota/long-tail-learning-on-cifar-100-lt-r-100?p=escaping-saddle-points-for-effective)
 
 ## Abstract
 <div align="center">
