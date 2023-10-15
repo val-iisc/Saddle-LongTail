@@ -162,7 +162,7 @@ if __name__ == '__main__':
     parser.add_argument('--dir_train_txt', type=str, default='./data/data_txt/ImageNet_LT_train.txt', help="dataset txt for train data")
     parser.add_argument('--dir_test_txt', type=str, default='./data/data_txt/ImageNet_LT_test.txt', help="dataset txt for test data")
     parser.add_argument('-a', '--arch', metavar='ARCH', default='resnet34',choices=('resnet18', 'resnet32', 'resnet34', 'resnet50', 'resnext50_32x4d'))
-    parser.add_argument('--num_classes', default=100, type=int, help='number of classes ')
+    parser.add_argument('--num_classes', default=10, type=int, help='number of classes ')
     parser.add_argument('--imbanlance_rate', default=0.01, type=float, help='imbalance factor')
     parser.add_argument('--beta', type=float, default=0.5, help="augment mixture")
     parser.add_argument('--lr', '--learning-rate', default=0.01, type=float, metavar='LR', help='initial learning rate',dest='lr')
