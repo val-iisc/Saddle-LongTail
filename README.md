@@ -8,6 +8,8 @@ This is the official PyTorch implementation for our NeurIPS'22 paper: **Escaping
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/escaping-saddle-points-for-effective/long-tail-learning-on-cifar-100-lt-r-200)](https://paperswithcode.com/sota/long-tail-learning-on-cifar-100-lt-r-200?p=escaping-saddle-points-for-effective) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/escaping-saddle-points-for-effective/long-tail-learning-on-cifar-10-lt-r-200)](https://paperswithcode.com/sota/long-tail-learning-on-cifar-10-lt-r-200?p=escaping-saddle-points-for-effective) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/escaping-saddle-points-for-effective/long-tail-learning-on-cifar-10-lt-r-100)](https://paperswithcode.com/sota/long-tail-learning-on-cifar-10-lt-r-100?p=escaping-saddle-points-for-effective) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/escaping-saddle-points-for-effective/long-tail-learning-on-cifar-100-lt-r-100)](https://paperswithcode.com/sota/long-tail-learning-on-cifar-100-lt-r-100?p=escaping-saddle-points-for-effective)
 
+### UPDATE : We integrated our method with GLMC (CVPR 2023). Our method leads to ~2% gain over GLMC (SotA) :smile: \[[`link`](#results-with-glmc)\].
+
 ## Abstract
 <div align="center">
   <img width="100%" alt="Long Tail Saddle Points" src="assets/overview.png">
@@ -127,6 +129,25 @@ We show results on CIFAR-10 LT, CIFAR-100 LT, ImageNet-LT and iNaturalist-18 dat
 </table>
 </div>
 
+### Results with GLMC
+
+We also run our method with the latest SOTA method GLMC ([CVPR 2023](https://arxiv.org/abs/2305.08661)) and demonstrate that the proposed method can further improve performance. As previously conjectured in our work, we apply SAM on the re-weighting loss of GLMC to avoid saddle points. Note that we use a $\rho$ of 0.05 for all the experiments below. The code to reproduce all the experiments in available in `GLMC-2023/run.sh`.
+
+The sample command to run GLMC includes specifying additional param --rho 0.05, example for that is provided below:
+
+`python GLMC-2023/main.py --dataset cifar10 -a resnet34 --num_classes 10 --imbanlance_rate 0.02 --beta 0.5 --lr 0.01 --epochs 200 -b 64 --momentum 0.9 --weight_decay 5e-3 --resample_weighting 0.0 --label_weighting 1.2 --contrast_weight 1 --rho 0.05`
+
+**Result**
+
+<div align="center">
+
+|         | CIFAR-10 | CIFAR-10 | CIFAR-100 | CIFAR-100 |
+|---------|----------|-----------|----------|-----------|
+|         |   50     |   100     |   50     |   100     |
+| GLMC    | 89.81    | 87.55    | 62.49    | 57.63     |
+| GLMC + SAM | 91.56 | 89.18     | 65.28   | 59.01     |
+
+</div>
 
 ## **Class-Wise** Hessian Analysis
 
@@ -153,6 +174,7 @@ Generally, all python scripts in the project take the following flags
 ## Acknowledgement
 Our implementation is based on the [LDAM](https://github.com/kaidic/LDAM-DRW) and [VS-Loss](https://github.com/orparask/VS-Loss). We use the PyTorch implementation of SAM from https://github.com/davda54/sam. We refer to [PyHessian](https://github.com/amirgholami/PyHessian) for computation of the Eigen Spectral density and the loss landscape analysis. We thank the authors for releasing their source-code publicly.
 
+The implementation of GLMC+SAM is based on [GLMC](https://github.com/ynu-yangpeng/GLMC) codebase. We thank the authors for publicly releasing the code.
 ## Citation
 If you find our paper or codebase useful, please consider citing us as:
 ```latex
