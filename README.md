@@ -8,7 +8,7 @@ This is the official PyTorch implementation for our NeurIPS'22 paper: **Escaping
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/escaping-saddle-points-for-effective/long-tail-learning-on-cifar-100-lt-r-200)](https://paperswithcode.com/sota/long-tail-learning-on-cifar-100-lt-r-200?p=escaping-saddle-points-for-effective) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/escaping-saddle-points-for-effective/long-tail-learning-on-cifar-10-lt-r-200)](https://paperswithcode.com/sota/long-tail-learning-on-cifar-10-lt-r-200?p=escaping-saddle-points-for-effective) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/escaping-saddle-points-for-effective/long-tail-learning-on-cifar-10-lt-r-100)](https://paperswithcode.com/sota/long-tail-learning-on-cifar-10-lt-r-100?p=escaping-saddle-points-for-effective) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/escaping-saddle-points-for-effective/long-tail-learning-on-cifar-100-lt-r-100)](https://paperswithcode.com/sota/long-tail-learning-on-cifar-100-lt-r-100?p=escaping-saddle-points-for-effective)
 
-**UPDATED** : We integrated our method with GLMC (CVPR 2023). Our method leads to ~2% gain over GLMC (SotA) :smile: \[[`link`](#results-with-glmc)\].
+### UPDATE : We integrated our method with GLMC (CVPR 2023). Our method leads to ~2% gain over GLMC (SotA) :smile: \[[`link`](#results-with-glmc)\].
 
 ## Abstract
 <div align="center">
@@ -131,10 +131,13 @@ We show results on CIFAR-10 LT, CIFAR-100 LT, ImageNet-LT and iNaturalist-18 dat
 
 ### Results with GLMC
 
-We also run our method with the latest SOTA method GLMC ([CVPR 2023](https://arxiv.org/abs/2305.08661)) and demonstrate that the proposed method can further improve performance. As previously conjectured in our work, we apply SAM on the re-weighting loss of GLMC to avoid saddle points. Note that we use a $\rho$ of 0.05 for all the experiments below. The code to reproduce all teh experiments in available in `GLMC-2023/run.sh`.
+We also run our method with the latest SOTA method GLMC ([CVPR 2023](https://arxiv.org/abs/2305.08661)) and demonstrate that the proposed method can further improve performance. As previously conjectured in our work, we apply SAM on the re-weighting loss of GLMC to avoid saddle points. Note that we use a $\rho$ of 0.05 for all the experiments below. The code to reproduce all the experiments in available in `GLMC-2023/run.sh`.
 
+The sample command to run GLMC includes specifying additional param --rho 0.05, example for that is provided below:
 
 `python GLMC-2023/main.py --dataset cifar10 -a resnet34 --num_classes 10 --imbanlance_rate 0.02 --beta 0.5 --lr 0.01 --epochs 200 -b 64 --momentum 0.9 --weight_decay 5e-3 --resample_weighting 0.0 --label_weighting 1.2 --contrast_weight 1 --rho 0.05`
+
+**Result**
 
 <div align="center">
 
