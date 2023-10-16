@@ -133,7 +133,7 @@ We show results on CIFAR-10 LT, CIFAR-100 LT, ImageNet-LT and iNaturalist-18 dat
 
 We also run our method with the latest SOTA method GLMC ([CVPR 2023](https://arxiv.org/abs/2305.08661)) and demonstrate that the proposed method can further improve performance. As previously conjectured in our work, we apply SAM on the re-weighting loss of GLMC to avoid saddle points. Note that we use a $\rho$ of 0.05 for all the experiments below. The code to reproduce all the experiments in available in `GLMC-2023/run.sh`.
 
-The sample command to run GLMC includes specifying additional param --rho 0.05, example for that is provided below:
+The sample command to run GLMC includes specifying additional param --rho 0.05, example command below:
 
 `python GLMC-2023/main.py --dataset cifar10 -a resnet34 --num_classes 10 --imbanlance_rate 0.02 --beta 0.5 --lr 0.01 --epochs 200 -b 64 --momentum 0.9 --weight_decay 5e-3 --resample_weighting 0.0 --label_weighting 1.2 --contrast_weight 1 --rho 0.05`
 
